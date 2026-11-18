@@ -4,7 +4,7 @@
 
 
 /*
-   AUTH SCREEN — centered full-height wrapper test
+   AUTH SCREEN — centered full-height wrapper test test
 */
 .auth-screen {
   min-height: calc(100vh - var(--header-h));
