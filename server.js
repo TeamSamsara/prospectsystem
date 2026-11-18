@@ -7,7 +7,7 @@ const http = require('http');
 const https = require('https');
 
 // ── CONFIG ── change these two ──────────
-const RIOT_API_KEY  = 'RGAPI-dcfe20ae-a3ef-41bf-8791-2eae0d3e0999';
+const RIOT_API_KEY  = process.env.RIOT_API_KEY;
 const PORT          = 3001;
 // ────────────────────────────────────────
 
@@ -21,6 +21,10 @@ function corsHeaders(res) {
 }
 
 function riotPost(path, body, cb) {
+    if (!RIOT_API_KEY) {
+        cb(new Error('RIOT_API_KEY is not configured on the server.'));
+        return;
+    }
     const payload = JSON.stringify(body);
     const options = {
         hostname: RIOT_HOST,
@@ -43,6 +47,10 @@ function riotPost(path, body, cb) {
 }
 
 function riotGet(path, cb) {
+    if (!RIOT_API_KEY) {
+        cb(new Error('RIOT_API_KEY is not configured on the server.'));
+        return;
+    }
     const options = {
         hostname: RIOT_HOST,
         path:     path,
