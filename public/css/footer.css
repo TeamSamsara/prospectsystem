@@ -1,0 +1,39 @@
+/*
+   footer.css — Sticky save bar
+*/
+
+
+/*
+   STICKY SAVE BAR
+*/
+.sticky-save-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: rgba(17,24,32,.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  padding: 12px 36px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+
+.sticky-save-bar.hidden { display: none !important; }
+
+.ssb-left { display: flex; align-items: center; gap: 10px; }
+.ssb-right { display: flex; align-items: center; gap: 10px; }
+
+.ssb-status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0; transition: background .3s;
+}
+.ssb-dot-saved   { background: var(--pass); }
+.ssb-dot-saving  { background: var(--gold); animation: ssb-pulse 1s ease-in-out infinite; }
+.ssb-dot-unsaved { background: var(--flag); }
+.ssb-dot-error   { background: var(--no); }
+
+@keyframes ssb-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+.ssb-status-text {
+  font-size: 13px; color: var(--text2); letter-spacing: .5px;
+}

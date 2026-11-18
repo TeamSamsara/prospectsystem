@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Sight · Combine Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Agdasima:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/combine.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header id="appHeader">
+        <div class="brand">
+            <div class="bmark">TS</div>
+            <div>
+                <div class="bt-sub">TEAM SAMSARA</div>
+                <div class="bt-name">TRUE SIGHT</div>
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="/index.html"      class="nav-link">PROSPECTS</a>
+            <a href="/interviews.html" class="nav-link">INTERVIEWS</a>
+            <a href="/combine.html"    class="nav-link on">COMBINE</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ══════════════════════════════════════
+             VIEW: LIST
+        ══════════════════════════════════════ -->
+        <section id="combineView_list" class="combine-view">
+
+            <!-- Toolbar -->
+            <div class="list-toolbar">
+                <div class="tb-left">
+                    <div class="fs-eyebrow" style="margin:0">COMBINE PLANNER</div>
+                </div>
+                <div class="tb-right">
+                    <button class="btn btn-cta" id="newCombineBtn">◈ NEW COMBINE</button>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div id="combineListCards">
+                <div class="iv-loading">Loading combines…</div>
+            </div>
+
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             VIEW: CREATE / EDIT
+        ══════════════════════════════════════ -->
+        <section id="combineView_create" class="combine-view hidden">
+
+            <form id="createCombineForm">
+
+                <!-- 01 — COMBINE INFO -->
+                <div class="form-section">
+                    <div class="fs-header">
+                        <div class="fs-eyebrow">01 — SETUP</div>
+                        <div class="fs-title">Create Combine</div>
+                    </div>
+                    <div class="field-grid-2">
+                        <label class="field-label field-col-2">Combine Name
+                            <input name="combineName" type="text" placeholder="e.g. Samsara Spring Trials 2026">
+                        </label>
+
+                        <!-- Trial days — pre-filled, read only display -->
+                        <label class="field-label field-col-2">Trial Days
+                            <div class="trial-days-display">
+                                <span class="trial-day-pill">Trial Day 1 — April 4</span>
+                                <span class="trial-day-pill">Trial Day 2 — April 5</span>
+                                <span class="trial-day-pill">Trial Day 3 — April 11</span>
+                                <span class="trial-day-pill">Trial Day 4 — April 12</span>
+                            </div>
+                        </label>
+
+                        <label class="field-label">Games Per Lobby
+                            <input name="gamesPerLobby" type="number" value="2" min="1" max="5" readonly>
+                        </label>
+                        <label class="field-label">Lobbies Per Day
+                            <input name="lobbiesPerDay" type="number" value="8" readonly>
+                        </label>
+
+                        <!-- Block schedule — visual reference -->
+                        <div class="field-label field-col-2">
+                            <span>Daily Schedule</span>
+                            <div class="schedule-reference">
+                                <div class="schedule-block">
+                                    <div class="schedule-block-label">BLOCK 1</div>
+                                    <div class="schedule-block-slots">
+                                        <span>4:00 PM — Lobby 1 &amp; 2</span>
+                                        <span>4:30 PM — Lobby 3 &amp; 4</span>
+                                    </div>
+                                </div>
+                                <div class="schedule-break">~2h Break</div>
+                                <div class="schedule-block">
+                                    <div class="schedule-block-label">BLOCK 2</div>
+                                    <div class="schedule-block-slots">
+                                        <span>8:00 PM — Lobby 5 &amp; 6</span>
+                                        <span>9:30 PM — Lobby 7 &amp; 8</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 — PARTICIPANT POOL -->
+                <div class="form-section">
+                    <div class="fs-header">
+                        <div class="fs-eyebrow">02 — PARTICIPANT POOL</div>
+                        <div class="fs-title">Select Players</div>
+                    </div>
+
+                    <!-- Pool toolbar -->
+                    <div class="pool-toolbar">
+                        <div class="tb-left">
+                            <span class="pool-count-label">
+                                <span id="poolSelectedCount">0</span> selected
+                            </span>
+                            <div class="chip-sep"></div>
+                            <!-- Role counts -->
+                            <span class="role role-TOP">TOP <span id="poolCount_TOP">0</span></span>
+                            <span class="role role-JG">JG <span id="poolCount_JG">0</span></span>
+                            <span class="role role-MID">MID <span id="poolCount_MID">0</span></span>
+                            <span class="role role-ADC">ADC <span id="poolCount_ADC">0</span></span>
+                            <span class="role role-SUP">SUP <span id="poolCount_SUP">0</span></span>
+                        </div>
+                        <div class="tb-right">
+                            <button type="button" class="btn btn-ghost" id="poolClearBtn">CLEAR</button>
+                            <button type="button" class="btn btn-ghost" id="poolSelectAllBtn">SELECT ALL</button>
+                        </div>
+                    </div>
+
+                    <!-- Player rows grouped by role -->
+                    <div id="poolSelectorRows">
+                        <div class="iv-loading">Loading prospects…</div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="cancelCreateBtn">CANCEL</button>
+                    <button type="submit" class="btn btn-cta" id="saveCombineBtn">◈ CREATE &amp; OPEN DASHBOARD</button>
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             VIEW: DASHBOARD
+        ══════════════════════════════════════ -->
+        <section id="combineView_dashboard" class="combine-view hidden">
+
+            <!-- Dashboard header -->
+            <div class="dash-header">
+                <div class="dash-header-left">
+                    <button class="btn btn-ghost" id="dashBackBtn" style="margin-right:8px">← BACK</button>
+                    <div>
+                        <div class="fs-eyebrow">COMBINE DASHBOARD</div>
+                        <div class="fs-title" id="dashCombineName">—</div>
+                    </div>
+                </div>
+                <div id="dashCombineStats" class="dash-stats-row"></div>
+            </div>
+
+            <!-- Dashboard toolbar -->
+            <div class="list-toolbar" style="margin-bottom:18px">
+                <div class="tb-left">
+                    <div class="chip-sep"></div>
+                    <!-- Day jump links -->
+                    <a class="chip" href="#day_apr4">Apr 4</a>
+                    <a class="chip" href="#day_apr5">Apr 5</a>
+                    <a class="chip" href="#day_apr11">Apr 11</a>
+                    <a class="chip" href="#day_apr12">Apr 12</a>
+                </div>
+                <div class="tb-right">
+                    <button class="btn btn-ghost" id="clearAssignmentsBtn">CLEAR ALL</button>
+                    <button class="btn btn-cta"   id="autoFillBtn">◈ AUTO-FILL LOBBIES</button>
+                </div>
+            </div>
+
+            <!-- Lobby planner days -->
+            <div id="lobbyPlannerDays">
+                <div class="iv-loading">Loading lobbies…</div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

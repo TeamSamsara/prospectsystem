@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>True Sight · Interview Scheduler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Agdasima:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/interviews.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header id="appHeader">
+    <div class="brand">
+      <div class="bmark">TS</div>
+      <div>
+        <div class="bt-sub">TEAM SAMSARA</div>
+        <div class="bt-name">TRUE SIGHT</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="/index.html"      class="nav-link">PROSPECT LIST</a>
+      <a href="/interviews.html" class="nav-link on">INTERVIEWS</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- SPILL BAR -->
+    <div class="spill-bar" id="interviewSpillBar">
+      <div class="spill">
+        <div class="spill-lbl">Total Prospects</div>
+        <div class="spill-val" id="iStatTotal" style="color:var(--text)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">Availability Set</div>
+        <div class="spill-val" id="iStatAvail" style="color:var(--accent)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">Scheduled</div>
+        <div class="spill-val" id="iStatScheduled" style="color:var(--sup)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">Done</div>
+        <div class="spill-val" id="iStatDone" style="color:var(--pass)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">No-Show</div>
+        <div class="spill-val" id="iStatNoShow" style="color:var(--no)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">No Availability</div>
+        <div class="spill-val" id="iStatNoAvail" style="color:var(--flag)">—</div>
+      </div>
+      <div class="spill">
+        <div class="spill-lbl">Slots Left</div>
+        <div class="spill-val" id="iStatSlots" style="color:var(--gold)">—</div>
+      </div>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="iv-tab-bar">
+      <div class="tb-left">
+        <button class="iv-tab on" data-tab="availability">AVAILABILITY</button>
+        <button class="iv-tab"    data-tab="schedule">SCHEDULE</button>
+      </div>
+      <div class="tb-right" id="tabActions">
+        <!-- actions rendered by JS depending on active tab -->
+      </div>
+    </div>
+
+    <!-- ══ TAB: AVAILABILITY ══ -->
+    <div id="tabAvailability" class="iv-tab-content">
+
+      <!-- Filter toolbar -->
+      <div class="iv-filter-bar">
+        <div class="tb-left">
+          <input class="search-input" id="iSearch" placeholder="Search prospect…" autocomplete="off">
+          <div class="chip-sep"></div>
+          <button class="chip on" data-ifilter="ALL">ALL</button>
+          <button class="chip"    data-ifilter="AVAILABLE">AVAILABLE SET</button>
+          <button class="chip"    data-ifilter="NO_AVAILABILITY">NO AVAILABILITY</button>
+          <button class="chip"    data-ifilter="SCHEDULED">SCHEDULED</button>
+          <button class="chip"    data-ifilter="UNSCHEDULED">UNSCHEDULED</button>
+          <button class="chip"    data-ifilter="DONE">DONE</button>
+          <button class="chip"    data-ifilter="NO_SHOW">NO-SHOW</button>
+        </div>
+      </div>
+
+      <div class="iv-panel">
+        <div class="iv-panel-header">
+          <div class="iv-panel-eyebrow">STEP 01 — AVAILABILITY</div>
+          <div class="iv-panel-title">Set Prospect Availability</div>
+          <div class="iv-panel-sub">Click a slot to mark a prospect as available. All times EST. Scroll right to see the full week.</div>
+        </div>
+
+        <!-- Slot legend -->
+        <div class="slot-legend">
+          <div class="slot-legend-day" id="legendSlots"></div>
+        </div>
+
+        <!-- Prospect rows -->
+        <div id="prospectAvailList">
+          <div class="iv-loading">Loading prospects…</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ TAB: SCHEDULE ══ -->
+    <div id="tabSchedule" class="iv-tab-content hidden">
+
+      <div class="iv-panel">
+        <div class="iv-panel-header">
+          <div class="iv-panel-eyebrow">STEP 02 — SCHEDULE</div>
+          <div class="iv-panel-title">Interview Schedule</div>
+          <div class="iv-panel-sub">Auto-schedule fills slots based on availability. Resolve conflicts via dropdown. Move prospects with the reassign selector.</div>
+        </div>
+
+        <div id="scheduleView"></div>
+
+        <div class="iv-empty-schedule" id="scheduleEmpty">
+          <div class="iv-empty-icon">◈</div>
+          <div class="iv-empty-title">No schedule yet</div>
+          <div class="iv-empty-sub">Set availability first, then hit Auto-Schedule</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- AUTO-SCHEDULE CONFIRM MODAL -->
+  <div class="iv-modal-overlay hidden" id="autoScheduleModal">
+    <div class="iv-modal">
+      <div class="iv-modal-eyebrow">AUTO-SCHEDULE</div>
+      <div class="iv-modal-title">Generate Interview Schedule</div>
+      <div class="iv-modal-body">
+        The system will assign one prospect per slot (Mon→Sun, 6:00→9:00 PM). When multiple prospects are available for the same slot, it picks the first one by role order. All assignments save immediately to Firestore.
+      </div>
+      <div class="iv-modal-stats">
+        <div class="iv-modal-stat">
+          <div class="iv-modal-stat-val" id="modalCanSchedule">—</div>
+          <div class="iv-modal-stat-lbl">Prospects to schedule</div>
+        </div>
+        <div class="iv-modal-stat">
+          <div class="iv-modal-stat-val" id="modalTotalSlots">35</div>
+          <div class="iv-modal-stat-lbl">Total available slots</div>
+        </div>
+      </div>
+      <div class="iv-modal-actions">
+        <button class="btn btn-ghost" id="modalCancelBtn">CANCEL</button>
+        <button class="btn btn-cta"   id="modalConfirmBtn">◈ CONFIRM & SCHEDULE</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

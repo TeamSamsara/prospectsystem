@@ -1,0 +1,608 @@
+/* ════════════════════════════════════════════════════════════
+   TEAM SAMSARA — TRUE SIGHT
+   Interview Scheduler — extends style.css tokens only
+════════════════════════════════════════════════════════════ */
+
+
+/* ════════════════════════════════════════
+   TWO COLUMN LAYOUT
+════════════════════════════════════════ */
+.iv-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .iv-layout { grid-template-columns: 1fr; }
+}
+
+.iv-left, .iv-right { min-width: 0; }
+
+
+/* ════════════════════════════════════════
+   PANEL
+════════════════════════════════════════ */
+.iv-panel {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--rxl);
+  overflow: hidden;
+}
+
+.iv-panel-header {
+  padding: 20px 26px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.015);
+}
+
+.iv-panel-eyebrow {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 4px;
+}
+
+.iv-panel-title {
+  font-family: var(--f-head); font-size: 22px;
+  letter-spacing: 1px; color: var(--text); line-height: 1;
+  margin-bottom: 6px;
+}
+
+.iv-panel-sub {
+  font-size: 13px; color: var(--text3); line-height: 1.5;
+}
+
+.iv-loading {
+  padding: 48px; text-align: center;
+  color: var(--text3); font-size: 14px; letter-spacing: 1px;
+}
+
+
+/* ════════════════════════════════════════
+   SLOT LEGEND  (day + time headers)
+════════════════════════════════════════ */
+.slot-legend {
+  background: var(--bg3);
+  border-bottom: 2px solid var(--gold);
+  padding: 12px 20px;
+  overflow-x: auto;
+}
+
+.slot-legend-day {
+  display: flex;
+  gap: 0;
+  min-width: max-content;
+}
+
+.legend-day-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-right: 8px;
+}
+
+.legend-day-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  white-space: nowrap; padding: 0 4px;
+}
+
+.legend-slots-row {
+  display: flex; gap: 4px;
+}
+
+.legend-slot {
+  font-family: var(--f-mono); font-size: 10px;
+  color: var(--text3); background: var(--bg4);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 3px 7px;
+  white-space: nowrap;
+  width: 80px; text-align: center;
+}
+
+
+/* ════════════════════════════════════════
+   PROSPECT AVAILABILITY ROW
+════════════════════════════════════════ */
+.avail-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--line2);
+  transition: background .1s;
+}
+
+.avail-row:last-child { border-bottom: none; }
+.avail-row:hover { background: var(--bg3); }
+
+.avail-prospect-info {
+  width: 200px; flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+
+.avail-name {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.avail-meta {
+  display: flex; align-items: center; gap: 6px;
+}
+
+.avail-slots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  /* Don't steal keyboard focus from child elements */
+  outline: none;
+}
+
+.avail-slots:focus-within {
+  /* When a child select is focused, disable scroll snap */
+  overflow-x: hidden;
+}
+
+/* Individual availability checkbox slot */
+.avail-slot {
+  width: 72px; height: 44px; flex-shrink: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--bg4);
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: all .13s;
+  position: relative;
+  gap: 2px;
+}
+
+.avail-slot:hover {
+  border-color: rgba(149,236,93,.3);
+  background: var(--bg3);
+}
+
+.avail-slot-time {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--text3);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.avail-slot.available .avail-slot-time { color: var(--accent); }
+.avail-slot.booked    .avail-slot-time { color: var(--sup); }
+.avail-slot.done      .avail-slot-time { color: var(--pass); }
+.avail-slot.noshow    .avail-slot-time { color: var(--no); }
+
+.avail-slot.available {
+  background: var(--adim);
+  border-color: rgba(149,236,93,.4);
+}
+
+.avail-slot.available::before {
+  content: '✓';
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.avail-slot.booked {
+  background: rgba(91,156,246,.08);
+  border-color: rgba(91,156,246,.35);
+  cursor: default;
+}
+
+.avail-slot.booked::before {
+  content: '◈';
+  font-size: 11px;
+  color: var(--sup);
+  line-height: 1;
+}
+
+.avail-slot.done {
+  background: rgba(74,222,128,.06);
+  border-color: rgba(74,222,128,.2);
+  cursor: default;
+  opacity: .6;
+}
+
+.avail-slot.done::before {
+  content: '✓✓';
+  font-size: 10px;
+  color: var(--pass);
+  line-height: 1;
+}
+
+.avail-slot.noshow {
+  background: rgba(242,92,92,.06);
+  border-color: rgba(242,92,92,.2);
+  cursor: default;
+  opacity: .5;
+}
+
+.avail-slot.noshow::before {
+  content: '✕';
+  font-size: 13px;
+  color: var(--no);
+  line-height: 1;
+}
+
+/* Interview status badge on prospect row */
+.avail-status {
+  margin-left: 12px; flex-shrink: 0;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.avail-status.scheduled { color: var(--sup);   border: 1px solid rgba(91,156,246,.25);  background: rgba(91,156,246,.08); }
+.avail-status.done      { color: var(--pass);  border: 1px solid rgba(74,222,128,.25);  background: rgba(74,222,128,.08); }
+.avail-status.noshow    { color: var(--no);    border: 1px solid rgba(242,92,92,.2);    background: rgba(242,92,92,.07); }
+.avail-status.pending   { color: var(--text3); border: 1px solid var(--line); background: transparent; }
+
+
+/* ════════════════════════════════════════
+   SCHEDULE VIEW  (right panel)
+════════════════════════════════════════ */
+.schedule-day-block {
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-day-block:last-child { border-bottom: none; }
+
+.schedule-day-header {
+  padding: 12px 20px 10px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.schedule-day-name {
+  font-family: var(--f-head); font-size: 16px;
+  letter-spacing: 1px; color: var(--gold);
+}
+
+.schedule-day-date {
+  font-family: var(--f-mono); font-size: 12px; color: var(--text3);
+}
+
+.schedule-day-count {
+  font-size: 11px; color: var(--text3); letter-spacing: 1px;
+}
+
+/* Individual scheduled slot */
+.schedule-slot {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line2);
+  transition: background .1s;
+}
+
+.schedule-slot:last-child { border-bottom: none; }
+.schedule-slot:hover { background: var(--bg3); }
+
+.schedule-time {
+  font-family: var(--f-mono); font-size: 13px;
+  color: var(--text2); width: 88px; flex-shrink: 0;
+}
+
+.schedule-prospect {
+  flex: 1; min-width: 0;
+}
+
+.schedule-prospect-name {
+  font-size: 14px; font-weight: 700; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.schedule-prospect-meta {
+  display: flex; align-items: center; gap: 6px; margin-top: 2px;
+}
+
+.schedule-actions {
+  display: flex; gap: 6px; flex-shrink: 0;
+}
+
+/* Empty slot in schedule */
+.schedule-slot-empty {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line2);
+  opacity: .4;
+}
+
+.schedule-slot-empty:last-child { border-bottom: none; }
+
+.schedule-slot-empty .schedule-time {
+  color: var(--text3);
+}
+
+.schedule-slot-empty-label {
+  font-size: 13px; color: var(--text3); font-style: italic;
+}
+
+/* Status dot on schedule slot */
+.slot-status-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.slot-status-dot.scheduled { background: var(--sup); }
+.slot-status-dot.done      { background: var(--pass); }
+.slot-status-dot.noshow    { background: var(--no); }
+.slot-status-dot.empty     { background: var(--text3); }
+
+
+/* ════════════════════════════════════════
+   EMPTY SCHEDULE STATE
+════════════════════════════════════════ */
+.iv-empty-schedule {
+  padding: 60px 24px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+
+.iv-empty-icon {
+  font-size: 32px; color: var(--text3); opacity: .4;
+}
+
+.iv-empty-title {
+  font-family: var(--f-head); font-size: 18px;
+  letter-spacing: 1px; color: var(--text3);
+}
+
+.iv-empty-sub {
+  font-size: 13px; color: var(--text3); max-width: 260px; line-height: 1.6;
+}
+
+
+/* ════════════════════════════════════════
+   AUTO-SCHEDULE CONFIRM MODAL
+════════════════════════════════════════ */
+.iv-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.iv-modal-overlay.hidden { display: none; }
+
+.iv-modal {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--rxl);
+  padding: 28px 32px;
+  width: 480px; max-width: 95vw;
+}
+
+.iv-modal-eyebrow {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+
+.iv-modal-title {
+  font-family: var(--f-head); font-size: 22px;
+  letter-spacing: 1px; color: var(--text);
+  margin-bottom: 8px;
+}
+
+.iv-modal-body {
+  font-size: 14px; color: var(--text2); line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.iv-modal-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 24px;
+}
+
+.iv-modal-stat {
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 12px 14px;
+}
+
+.iv-modal-stat-val {
+  font-family: var(--f-head); font-size: 28px;
+  color: var(--accent); line-height: 1;
+}
+
+.iv-modal-stat-lbl {
+  font-size: 11px; color: var(--text3);
+  letter-spacing: 1px; text-transform: uppercase; margin-top: 4px;
+}
+
+.iv-modal-actions {
+  display: flex; gap: 10px; justify-content: flex-end;
+}
+
+
+/* ════════════════════════════════════════
+   SMALL UTIL — interview-specific
+════════════════════════════════════════ */
+.day-sep {
+  height: 1px; background: var(--line);
+  margin: 0;
+}
+
+.no-avail-msg {
+  padding: 20px 24px;
+  font-size: 13px; color: var(--text3); font-style: italic;
+  text-align: center;
+}
+
+
+/* ════════════════════════════════════════
+   CONFLICT SLOTS
+════════════════════════════════════════ */
+.slot-conflict {
+  border-left: 3px solid var(--flag) !important;
+  background: rgba(245,200,66,.04);
+}
+
+.conflict-label {
+  color: var(--flag) !important;
+}
+
+.slot-status-dot.conflict {
+  background: var(--flag);
+}
+
+.conflict-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 3px 9px;
+  border-radius: 3px;
+  color: var(--flag);
+  border: 1px solid rgba(245,200,66,.3);
+  background: rgba(245,200,66,.08);
+}
+
+/* Conflict + reassign dropdowns */
+.conflict-select,
+.reassign-select {
+  font-family: var(--f-body); font-size: 12px;
+  background: var(--bg3); border: 1px solid var(--line);
+  color: var(--text); padding: 6px 10px;
+  border-radius: var(--r); outline: none;
+  cursor: pointer; transition: border-color .15s;
+  max-width: 180px;
+}
+
+.conflict-select:focus,
+.reassign-select:focus { border-color: rgba(149,236,93,.35); }
+
+.conflict-select option,
+.reassign-select option { background: var(--bg3); color: var(--text); }
+
+/* Schedule slot status tints */
+.schedule-slot.status-done   { opacity: .7; }
+.schedule-slot.status-noshow { opacity: .5; }
+
+
+/* ════════════════════════════════════════
+   TAB BAR
+════════════════════════════════════════ */
+.iv-tab-bar {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--gold);
+  border-radius: var(--rl);
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 18px;
+}
+
+.iv-tab {
+  font-family: var(--f-body); font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 20px; border: 1px solid transparent;
+  border-radius: var(--r); cursor: pointer; background: transparent;
+  color: var(--text2); transition: all .15s;
+}
+.iv-tab:hover { background: var(--bg3); color: var(--text); }
+.iv-tab.on {
+  color: var(--accent); background: var(--adim);
+  border-color: rgba(149,236,93,.22);
+}
+
+.iv-tab-content { display: block; }
+.iv-tab-content.hidden { display: none !important; }
+
+.iv-filter-bar {
+  margin-bottom: 12px;
+  display: flex; align-items: center;
+}
+
+/* Empty slot with manual assign */
+.schedule-slot-empty {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--line2);
+}
+.schedule-slot-empty:last-child { border-bottom: none; }
+
+.manual-assign-select {
+  font-family: var(--f-body); font-size: 12px;
+  background: var(--bg3); border: 1px solid var(--line);
+  color: var(--text); padding: 6px 10px;
+  border-radius: var(--r); outline: none;
+  cursor: pointer; transition: border-color .15s;
+  max-width: 200px;
+}
+.manual-assign-select:focus { border-color: rgba(149,236,93,.35); }
+.manual-assign-select option { background: var(--bg3); color: var(--text); }
+
+
+/* ════════════════════════════════════════
+   MANUAL ASSIGN + AVAILABILITY INDICATORS
+════════════════════════════════════════ */
+.manual-assign-select {
+  font-family: var(--f-body); font-size: 12px;
+  background: var(--bg3); border: 1px solid var(--line);
+  color: var(--text); padding: 6px 10px;
+  border-radius: var(--r); outline: none;
+  cursor: pointer; transition: border-color .15s;
+  max-width: 200px;
+}
+.manual-assign-select:focus { border-color: rgba(149,236,93,.35); }
+.manual-assign-select option { background: var(--bg3); color: var(--text); }
+
+/* ✓ / ! indicator on filled slots */
+.avail-indicator {
+  font-size: 11px; font-weight: 700;
+  margin-right: 4px;
+}
+.avail-yes { color: var(--pass); }
+.avail-no  { color: var(--flag); }
+
+/* Available count badge on empty slots */
+.avail-count-badge {
+  font-size: 11px; letter-spacing: 1px;
+  color: var(--accent); margin-top: 2px;
+  display: block;
+}
+.avail-count-badge.none { color: var(--text3); }
+
+/* Always show all days — remove the empty day hide logic */
+.schedule-day-block { display: block !important; }
+
+
+/* ════════════════════════════════════════
+   OVERLAP / AVAILABILITY BADGES
+════════════════════════════════════════ */
+.overlap-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 3px;
+  color: var(--accent);
+  border: 1px solid rgba(149,236,93,.25);
+  background: rgba(149,236,93,.06);
+}
+
+.no-avail-badge {
+  font-size: 11px; color: var(--text3);
+  font-style: italic; letter-spacing: .5px;
+}
+
+/* Assign select — on empty slots */
+.assign-select {
+  font-family: var(--f-body); font-size: 12px;
+  background: var(--bg3); border: 1px solid var(--line);
+  color: var(--text); padding: 6px 10px;
+  border-radius: var(--r); outline: none;
+  cursor: pointer; transition: border-color .15s;
+  max-width: 200px;
+}
+.assign-select:focus { border-color: rgba(149,236,93,.35); }
+.assign-select option,
+.assign-select optgroup { background: var(--bg3); color: var(--text); }
+
+/* Override spill bar to 7 columns on interviews page */
+#interviewSpillBar {
+  grid-template-columns: repeat(7, 1fr);
+}

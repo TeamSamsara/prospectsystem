@@ -1,0 +1,115 @@
+/*
+   nav.css — Global header, nav links, profile subnav, mode indicator
+*/
+
+
+/*
+   HEADER
+*/
+#appHeader {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(17,24,32,.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 36px;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.bmark {
+  width: 40px; height: 40px; background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-head); font-size: 15px; color: #111820;
+  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+  flex-shrink: 0;
+}
+
+.bt-sub  { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text3); }
+.bt-name { font-family: var(--f-head); font-size: 20px; color: var(--accent); letter-spacing: 2px; line-height: 1.1; }
+
+.nav { display: flex; gap: 6px; }
+
+.nav-link {
+  font-family: var(--f-body); font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 18px; border: 1px solid transparent;
+  border-radius: var(--r); cursor: pointer; background: transparent;
+  color: var(--text2); transition: all .15s; text-decoration: none;
+}
+.nav-link:hover { background: var(--bg3); color: var(--text); }
+.nav-link.on    { color: var(--accent); background: var(--adim); border-color: rgba(149,236,93,.22); }
+
+
+/*
+   PROFILE SUBNAV
+   Uses 100vw + negative margin trick to break out of max-width container.
+*/
+.profile-subnav {
+  position: sticky; top: var(--header-h); z-index: 190;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line);
+  height: var(--subnav-h);
+  display: flex; align-items: stretch; justify-content: space-between;
+
+  width: 100vw;
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top:   -32px;
+  margin-bottom: 24px;
+  padding: 0 36px;
+}
+
+.psn-left  { display: flex; align-items: stretch; gap: 0; }
+.psn-right { display: flex; align-items: center; gap: 10px; }
+
+.psn-back {
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 0 16px; border: none; background: transparent;
+  color: var(--text3); cursor: pointer; transition: color .15s;
+  display: flex; align-items: center; gap: 6px; text-decoration: none;
+}
+.psn-back:hover { color: var(--text2); }
+
+.psn-divider {
+  width: 1px; background: var(--line);
+  margin: 12px 6px; flex-shrink: 0;
+}
+
+.psn-crumb {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text3); display: flex; align-items: center; padding: 0 8px;
+}
+
+.psn-tab {
+  position: relative;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0 14px; border: none; background: transparent;
+  color: var(--text3); cursor: pointer; transition: color .15s;
+  display: flex; align-items: center;
+}
+.psn-tab::after {
+  content: ''; position: absolute; bottom: 0; left: 8px; right: 8px; height: 2px;
+  background: var(--accent); transform: scaleX(0); transition: transform .18s;
+  border-radius: 2px 2px 0 0;
+}
+.psn-tab:hover { color: var(--text2); }
+.psn-tab.on    { color: var(--accent); }
+.psn-tab.on::after { transform: scaleX(1); }
+
+
+/*
+   MODE INDICATOR
+*/
+.psn-mode-indicator {
+  display: flex;
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+}
+
+.psn-mode-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 12px; color: var(--text3); background: transparent;
+  cursor: default; user-select: none;
+}
+.psn-mode-badge.on { background: var(--adim); color: var(--accent); }

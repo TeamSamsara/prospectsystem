@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "prospecttooldev-8ddbf",
+    "staging": "prospecttooldev-staging"
+  }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Sight · Lobby Codes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Agdasima:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/lobby-codes.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="appHeader">
+        <div class="brand">
+            <div class="bmark">TS</div>
+            <div>
+                <div class="bt-sub">TEAM SAMSARA</div>
+                <div class="bt-name">TRUE SIGHT</div>
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="/index.html"       class="nav-link">PROSPECTS</a>
+            <a href="/interviews.html"  class="nav-link">INTERVIEWS</a>
+            <a href="/combine.html"     class="nav-link">COMBINE</a>
+            <a href="/lobby-codes.html" class="nav-link on">LOBBY CODES</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ══════════════════════════════════════
+             VIEW: SESSION LIST
+        ══════════════════════════════════════ -->
+        <section id="lcView_list" class="lc-view">
+
+            <div class="list-toolbar">
+                <div class="fs-eyebrow" style="margin:0">LOBBY CODE SESSIONS</div>
+                <button class="btn btn-cta" id="newSessionBtn">◈ NEW SESSION</button>
+            </div>
+
+            <div id="sessionListCards">
+                <div class="iv-loading">Loading sessions…</div>
+            </div>
+
+        </section>
+
+
+        <!-- ══════════════════════════════════════
+             VIEW: SESSION DASHBOARD
+        ══════════════════════════════════════ -->
+        <section id="lcView_dashboard" class="lc-view hidden">
+
+            <!-- Dashboard header -->
+            <div class="dash-header">
+                <div class="dash-header-left">
+                    <button class="btn btn-ghost" id="dashBackBtn" style="margin-right:8px">← BACK</button>
+                    <div>
+                        <div class="fs-eyebrow">SESSION DASHBOARD</div>
+                        <div class="fs-title" id="dashSessionName">—</div>
+                    </div>
+                </div>
+                <div id="dashSessionStats" class="dash-stats-row"></div>
+            </div>
+
+            <!-- Dashboard toolbar -->
+            <div class="list-toolbar" style="margin-bottom:18px">
+                <div id="dashSessionMeta" style="font-family:var(--f-mono);font-size:12px;color:var(--text3);">—</div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <button class="btn btn-ghost" id="copyAllCodesBtn">COPY ALL CODES</button>
+                    <button class="btn btn-ghost" id="regenSessionBtn">↻ REGENERATE ALL</button>
+                </div>
+            </div>
+
+            <!-- Lobby code rows -->
+            <div id="lobbyCodesList"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ══════════════════════════════════════
+         MODAL: NEW SESSION
+    ══════════════════════════════════════ -->
+    <div class="lc-modal-overlay hidden" id="newSessionModal">
+        <div class="lc-modal">
+
+            <div class="lc-modal-eyebrow">01 — SETUP</div>
+            <div class="lc-modal-title">New Lobby Code Session</div>
+            <div class="lc-modal-sub">
+                Configure your tournament lobby parameters. One code is generated per lobby —
+                players re-use the same code for all games in that lobby.
+            </div>
+
+            <!-- Section: Session Details -->
+            <div class="lc-section-lbl">Session Details</div>
+            <div class="lc-field-grid">
+                <label class="field-label lc-col2">Session Name
+                    <input id="lc-name" type="text" placeholder="e.g. Samsara Spring Trials — Apr 5">
+                </label>
+                <label class="field-label">Region
+                    <select id="lc-region" class="field-select">
+                        <option value="NA1">NA1 — North America</option>
+                        <option value="EUW1">EUW1 — Europe West</option>
+                        <option value="EUN1">EUN1 — Europe Nordic &amp; East</option>
+                        <option value="KR">KR — Korea</option>
+                        <option value="BR1">BR1 — Brazil</option>
+                        <option value="LA1">LA1 — Latin America North</option>
+                        <option value="LA2">LA2 — Latin America South</option>
+                        <option value="OC1">OC1 — Oceania</option>
+                        <option value="TR1">TR1 — Turkey</option>
+                        <option value="RU">RU — Russia</option>
+                        <option value="JP1">JP1 — Japan</option>
+                    </select>
+                </label>
+                <label class="field-label">Map
+                    <select id="lc-map" class="field-select">
+                        <option value="SUMMONERS_RIFT">Summoner's Rift</option>
+                        <option value="HOWLING_ABYSS">Howling Abyss (ARAM)</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="lc-divider"></div>
+
+            <!-- Section: Lobby Config -->
+            <div class="lc-section-lbl">Lobby Configuration</div>
+            <div class="lc-field-grid">
+                <label class="field-label">Number of Lobbies
+                    <input id="lc-count" type="number" value="8" min="1" max="64">
+                </label>
+                <label class="field-label">Games per Lobby
+                    <input id="lc-games" type="number" value="2" min="1" max="10">
+                </label>
+                <label class="field-label">Pick Type
+                    <select id="lc-pick" class="field-select">
+                        <option value="TOURNAMENT_DRAFT">Tournament Draft</option>
+                        <option value="BLIND_PICK">Blind Pick</option>
+                        <option value="ALL_RANDOM">All Random</option>
+                        <option value="DRAFT_MODE">Draft Mode</option>
+                    </select>
+                </label>
+                <label class="field-label">Spectators
+                    <select id="lc-spec" class="field-select">
+                        <option value="ALL">All</option>
+                        <option value="LOBBYONLY">Lobby Only</option>
+                        <option value="NONE">None</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="lc-divider"></div>
+
+            <!-- Summary -->
+            <div class="lc-section-lbl">Summary</div>
+            <div class="lc-summary-grid">
+                <div class="lc-sum-cell">
+                    <div class="lc-sum-val accent" id="sum-lobbies">8</div>
+                    <div class="lc-sum-lbl">Lobbies</div>
+                </div>
+                <div class="lc-sum-cell">
+                    <div class="lc-sum-val" id="sum-games">2</div>
+                    <div class="lc-sum-lbl">Games ea.</div>
+                </div>
+                <div class="lc-sum-cell">
+                    <div class="lc-sum-val gold" id="sum-codes">8</div>
+                    <div class="lc-sum-lbl">Codes to Generate</div>
+                </div>
+                <div class="lc-sum-cell">
+                    <div class="lc-sum-val" id="sum-region">NA1</div>
+                    <div class="lc-sum-lbl">Region</div>
+                </div>
+            </div>
+
+            <div class="lc-modal-actions">
+                <button class="btn btn-ghost" id="cancelModalBtn">CANCEL</button>
+                <button class="btn btn-cta"   id="confirmSessionBtn">◈ GENERATE CODES</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

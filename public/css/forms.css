@@ -1,0 +1,231 @@
+/*
+   forms.css — Form sections, fields, tables, soft skills, verdict
+*/
+
+
+/*
+   FORM SECTIONS
+*/
+.form-section {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--rxl); margin-bottom: 18px; overflow: hidden;
+}
+.form-section:last-child    { margin-bottom: 0; }
+.form-section--verdict      { border-top: 2px solid var(--gold); }
+
+.fs-header {
+  padding: 20px 26px 16px; border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.015);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fs-eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.fs-title   { font-family: var(--f-head); font-size: 22px; letter-spacing: 1px; color: var(--text); line-height: 1; }
+
+
+/*
+   FIELD GRID
+*/
+.field-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 24px; }
+.field-col-2  { grid-column: span 2; }
+
+.field-label {
+  display: flex; flex-direction: column; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3);
+}
+
+.field-label input,
+.field-label textarea,
+.field-label select {
+  font-family: var(--f-body); font-size: 15px;
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 10px 13px;
+  color: var(--text); outline: none; transition: border-color .15s;
+}
+.field-label input:focus,
+.field-label textarea:focus,
+.field-label select:focus    { border-color: rgba(149,236,93,.35); }
+.field-label input::placeholder,
+.field-label textarea::placeholder { color: var(--text3); }
+.field-label textarea        { min-height: 84px; resize: vertical; }
+
+.field-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234d6475'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+  padding-right: 32px !important; cursor: pointer;
+}
+.field-select option { background: var(--bg3); color: var(--text); }
+
+
+/*
+   TABLES (edit mode)
+*/
+.table-wrap    { overflow-x: auto; padding: 0 24px; margin: 18px 0 10px; }
+
+table          { width: 100%; border-collapse: collapse; }
+thead tr       { background: var(--bg3); border-bottom: 1px solid var(--line); }
+
+th {
+  font-family: var(--f-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3);
+  padding: 11px 12px; text-align: left; white-space: nowrap;
+}
+
+.axis-col-1 { color: var(--accent) !important; }
+.axis-col-2 { color: var(--sup)    !important; }
+
+tbody tr             { border-bottom: 1px solid var(--line2); transition: background .1s; }
+tbody tr:last-child  { border-bottom: none; }
+tbody tr:hover       { background: var(--bg3); }
+
+td { padding: 8px; vertical-align: middle; }
+
+td input {
+  font-family: var(--f-body); font-size: 13px;
+  width: 100%; min-width: 60px;
+  background: var(--bg4); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 7px 9px;
+  color: var(--text); outline: none; transition: border-color .12s;
+}
+td input:focus       { border-color: rgba(149,236,93,.3); background: var(--bg3); }
+td input[readonly]   { color: var(--text2); cursor: default; }
+td input::placeholder{ color: var(--text3); font-size: 12px; }
+
+.table-add-btn { margin: 0 24px 22px; }
+.row-del-btn   { padding: 5px 10px !important; font-size: 12px !important; }
+
+.axis-legend {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  padding: 12px 24px; background: var(--bg3);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  font-size: 12px; color: var(--text3);
+}
+.axis-legend-item { display: flex; align-items: center; gap: 8px; }
+.axis-dot         { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.axis-dot-1       { background: var(--accent); }
+.axis-dot-2       { background: var(--sup); }
+.axis-scale       { margin-left: auto; font-size: 11px; }
+
+
+/*
+   SOFT SKILLS GRID
+*/
+.score-grid { display: grid; grid-template-columns: 240px 160px 1fr; padding: 0 24px 24px; }
+
+.sg-head-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text3); padding: 14px 12px 10px; border-bottom: 1px solid var(--line);
+}
+.sg-row-label { padding: 14px 12px; border-bottom: 1px solid var(--line2); }
+.sg-main      { font-size: 15px; font-weight: 700; color: var(--text); }
+.sg-sub       { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+.sg-cell { padding: 10px 12px; border-bottom: 1px solid var(--line2); display: flex; align-items: center; }
+.sg-cell input {
+  font-family: var(--f-mono); font-size: 15px;
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 8px 10px;
+  color: var(--text); width: 90px; outline: none; transition: border-color .12s;
+}
+.sg-cell input:focus        { border-color: rgba(149,236,93,.35); }
+.sg-cell input::placeholder { color: var(--text3); font-size: 12px; }
+.sg-cell:last-child input   { width: 100%; }
+
+
+/*
+   FINAL VERDICT — edit mode
+*/
+.verdict-scores-row { display: grid; grid-template-columns: repeat(6, 1fr); border-bottom: 1px solid var(--line); }
+
+.vs-input {
+  font-family: var(--f-head); font-size: 26px;
+  background: transparent; border: none;
+  color: var(--text2); width: 100%; outline: none; cursor: default;
+}
+.vs-input--score    { color: var(--accent); font-size: 34px; }
+.vs-input--decision {
+  font-family: var(--f-body); font-size: 15px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.written-rec-block { padding: 24px; }
+
+.wr-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.wr-icon   { font-size: 18px; color: var(--gold); }
+.wr-title  { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.wr-sub    { font-size: 13px; color: var(--text3); }
+
+.rec-textarea {
+  font-family: var(--f-body); font-size: 15px;
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 12px 14px;
+  color: var(--text); width: 100%; min-height: 120px;
+  resize: vertical; outline: none; transition: border-color .15s; line-height: 1.7;
+}
+.rec-textarea:focus        { border-color: rgba(149,236,93,.35); }
+.rec-textarea::placeholder { color: var(--text3); }
+
+.form-actions { display: flex; justify-content: flex-end; gap: 12px; padding: 24px 0 6px; }
+
+
+/*
+   LIVE VERDICT PANEL — edit mode sidebar
+*/
+.verdict-panel {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-top: 2px solid var(--gold); border-radius: var(--rxl); padding: 24px;
+}
+
+.vp-eyebrow     { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.vp-score-block { margin-bottom: 16px; }
+.lvp-score      { font-family: var(--f-head); font-size: 64px; line-height: 1; color: var(--text3); transition: color .3s; }
+.vp-score-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
+
+.vp-grade-row              { display: flex; gap: 14px; margin-bottom: 16px; }
+.vp-grade-block,
+.vp-decision-block         { flex: 1; }
+.vp-sublabel               { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
+.lvp-grade                 { font-family: var(--f-head); font-size: 28px; color: var(--text2); }
+.vp-divider                { height: 1px; background: var(--line); margin: 16px 0; }
+
+.vp-axes    { display: flex; flex-direction: column; gap: 14px; }
+.vp-axis-row{ display: flex; flex-direction: column; gap: 5px; }
+.vp-axis-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); font-weight: 700; }
+.vp-axis-sub   { color: var(--text3); font-size: 9px; margin-left: 5px; letter-spacing: 1px; }
+.vp-axis-right { display: flex; align-items: center; gap: 10px; }
+.vp-axis-right .bar     { width: 100%; flex: 1; height: 6px; }
+.vp-axis-right .bar-num { font-size: 14px; min-width: 36px; color: var(--text2); }
+.vp-hint { font-size: 11px; color: var(--text3); font-style: italic; text-align: center; margin-top: 6px; }
+
+/*
+   OPPONENT SELECT -- combine log table inline dropdown
+*/
+.opponent-select {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  color: var(--text2);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  padding: 6px 28px 6px 10px;
+  width: 100%;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+
+.opponent-select:focus {
+  outline: none;
+  border-color: rgba(149,236,93,.4);
+}
+
+.opponent-select option {
+  background: var(--bg3);
+  color: var(--text);
+}
+
+/* When an opponent is selected, highlight it subtly */
+.opponent-select:not([value=""]):not(:invalid) {
+  border-color: rgba(149,236,93,.2);
+  color: var(--text);
+}

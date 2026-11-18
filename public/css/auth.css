@@ -1,0 +1,346 @@
+/*
+   auth.css — Login, setup, and admin user management styles
+*/
+
+
+/*
+   AUTH SCREEN — centered full-height wrapper
+*/
+.auth-screen {
+  min-height: calc(100vh - var(--header-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 24px;
+  position: relative; z-index: 1;
+}
+
+
+/*
+   AUTH CARD — base
+*/
+.auth-card {
+  width: 100%; max-width: 440px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--rxl);
+  overflow: hidden;
+}
+
+/* Accent top border variants */
+.auth-card--accent { border-top: 2px solid var(--accent); }
+.auth-card--gold   { border-top: 2px solid var(--gold); }
+
+
+/*
+   AUTH CARD HEAD
+*/
+.auth-card-head {
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.auth-eyebrow {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+
+.auth-title {
+  font-family: var(--f-head); font-size: 30px;
+  letter-spacing: 2px; color: var(--text); line-height: 1;
+}
+
+.auth-subtitle {
+  font-size: 13px; color: var(--text3); margin-top: 8px;
+}
+
+
+/*
+   AUTH BODY
+*/
+.auth-body {
+  padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.auth-cta {
+  width: 100%; justify-content: center;
+  margin-top: 4px;
+}
+
+
+/*
+   AUTH FOOTER
+*/
+.auth-foot {
+  padding: 16px 32px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.auth-foot-text {
+  font-size: 12px; color: var(--text3);
+}
+
+
+/*
+   AUTH ERROR
+*/
+.auth-error {
+  background: rgba(242,92,92,.07);
+  border: 1px solid rgba(242,92,92,.2);
+  border-radius: var(--r);
+  padding: 11px 14px;
+  font-size: 12px; color: var(--no); letter-spacing: .5px;
+  display: flex; align-items: flex-start; gap: 8px;
+  line-height: 1.5;
+}
+
+
+/*
+   FIRST-LOGIN ALERT BANNER
+*/
+.auth-alert {
+  background: var(--gold-dim);
+  border-bottom: 1px solid var(--gold-line);
+  padding: 11px 32px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.auth-alert-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+  animation: authPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes authPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .25; }
+}
+
+
+/*
+   SETUP STEPS PROGRESS BAR
+*/
+.auth-steps {
+  display: flex; gap: 6px;
+  padding: 16px 32px 0;
+}
+
+.auth-step {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: var(--line);
+}
+.auth-step--done   { background: var(--pass); }
+.auth-step--active { background: var(--accent); }
+
+
+/*
+   PASSWORD RULES
+*/
+.pass-rules {
+  display: flex; flex-direction: column; gap: 5px;
+  margin-top: 8px;
+}
+
+.pass-rule {
+  font-size: 11px; color: var(--text3); letter-spacing: .5px;
+  display: flex; align-items: center; gap: 8px;
+  transition: color .15s;
+}
+
+.pass-rule::before {
+  content: '○'; font-size: 10px; flex-shrink: 0;
+}
+
+.pass-rule--ok {
+  color: var(--pass);
+}
+
+.pass-rule--ok::before {
+  content: '◈'; color: var(--pass);
+}
+
+
+/*
+   ADMIN CONTENT WRAPPER
+*/
+.admin-content {
+  max-width: 1400px; margin: 0 auto;
+  padding: 32px 36px 100px;
+  position: relative; z-index: 1;
+}
+
+
+/*
+   SPILL BAR — stats row at top of admin
+*/
+.spill-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--rl); overflow: hidden;
+}
+
+.spill {
+  padding: 18px 24px;
+  border-right: 1px solid var(--line);
+}
+.spill:last-child { border-right: none; }
+
+.spill-lbl {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 6px;
+}
+
+.spill-val {
+  font-family: var(--f-head); font-size: 32px; line-height: 1;
+  color: var(--text);
+}
+
+
+/*
+   ADD USER PANEL
+*/
+.add-user-panel {
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg3);
+}
+
+.add-user-eyebrow {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.add-user-eyebrow::after {
+  content: ''; flex: 1; height: 1px; background: var(--gold-line);
+}
+
+.add-user-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px; margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .add-user-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.add-user-temp-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+}
+
+.temp-pass-row {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.temp-pass-value {
+  flex: 1; font-family: var(--f-mono); font-size: 14px;
+  background: var(--bg4); border: 1px dashed rgba(149,236,93,.25);
+  border-radius: var(--r); padding: 10px 14px;
+  color: var(--accent); letter-spacing: 1px;
+  user-select: all;
+}
+
+.temp-pass-hint {
+  font-size: 11px; color: var(--text3); margin-top: 7px;
+}
+
+.add-user-actions {
+  display: flex; gap: 10px; margin-top: 18px;
+}
+
+
+/*
+   USERS TABLE
+*/
+.users-table-wrap { overflow-x: auto; }
+
+.users-table { width: 100%; border-collapse: collapse; }
+
+.users-table thead tr {
+  background: var(--bg3); border-bottom: 1px solid var(--line);
+}
+
+.users-table th {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3);
+  padding: 12px 20px; text-align: left; white-space: nowrap;
+}
+
+.users-table td {
+  padding: 14px 20px; border-bottom: 1px solid var(--line2);
+  font-size: 14px; color: var(--text2);
+  vertical-align: middle;
+}
+
+.users-table tbody tr:last-child td { border-bottom: none; }
+.users-table tbody tr:hover td { background: var(--bg3); }
+
+.user-name {
+  font-size: 15px; font-weight: 700; color: var(--text);
+}
+
+.user-email {
+  font-family: var(--f-mono); font-size: 11px; color: var(--text3); margin-top: 2px;
+}
+
+.td-actions {
+  display: flex; gap: 8px; justify-content: flex-end;
+}
+
+
+/*
+   ROLE BADGES — admin panel
+*/
+.role-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 3px;
+  display: inline-block; white-space: nowrap;
+}
+
+.role-admin   { color: var(--accent); border: 1px solid rgba(149,236,93,.25); background: var(--adim); }
+.role-manager { color: var(--gold);   border: 1px solid var(--gold-line);     background: var(--gold-dim); }
+.role-coach   { color: var(--pass);   border: 1px solid rgba(74,222,128,.25); background: rgba(74,222,128,.07); }
+.role-scout   { color: var(--text2);  border: 1px solid var(--line);          background: transparent; }
+
+
+/*
+   NAV USER INDICATOR
+*/
+.nav-sep {
+  width: 1px; height: 20px;
+  background: var(--line); flex-shrink: 0; margin: 0 4px;
+}
+
+.nav-user {
+  font-size: 12px; color: var(--text3); letter-spacing: .5px;
+  white-space: nowrap; max-width: 140px;
+  overflow: hidden; text-overflow: ellipsis;
+  align-self: center;
+}
+
+.nav-signout {
+  font-size: 11px; padding: 7px 14px; white-space: nowrap;
+}
+
+/*
+   CLEANUP PANEL
+*/
+.cleanup-block { display: flex; flex-direction: column; gap: 12px; }
+.cleanup-block-head { display: flex; align-items: flex-start; justify-content: space-between; }
+.cleanup-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+ 
+.cleanup-stat-grid {
+  display: flex; gap: 0;
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--rl); overflow: hidden;
+}
+.cleanup-stat {
+  padding: 12px 20px; border-right: 1px solid var(--line);
+  text-align: center; flex: 1;
+}
+.cleanup-stat:last-child { border-right: none; }
+.cleanup-stat-val { font-family: var(--f-head); font-size: 24px; color: var(--text); line-height: 1; }
+.cleanup-stat-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-top: 4px; }

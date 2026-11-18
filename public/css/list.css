@@ -1,0 +1,219 @@
+/*
+   list.css — Spill bar, role bar, toolbar, prospect list
+   @version 2.0.0
+*/
+
+
+/*
+   SPILL BAR
+*/
+.spill-bar {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--rl); overflow: hidden; margin-bottom: 6px;
+}
+
+.spill            { padding: 18px 24px; border-right: 1px solid var(--line); }
+.spill:last-child { border-right: none; }
+
+.spill-lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+.spill-val { font-family: var(--f-head); font-size: 32px; line-height: 1; }
+
+
+/*
+   ROLE BAR
+*/
+.role-bar {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--rl); overflow: hidden; margin-bottom: 6px;
+}
+
+.role-stat            { padding: 16px 24px; border-right: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
+.role-stat:last-child { border-right: none; }
+
+.role-stat-pill     { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 3px; flex-shrink: 0; }
+.role-stat-pill.top { color: var(--top); border: 1px solid rgba(245,156,66,.3);  background: rgba(245,156,66,.08); }
+.role-stat-pill.jg  { color: var(--jg);  border: 1px solid rgba(74,222,128,.3);  background: rgba(74,222,128,.08); }
+.role-stat-pill.mid { color: var(--mid); border: 1px solid rgba(167,139,250,.3); background: rgba(167,139,250,.08); }
+.role-stat-pill.adc { color: var(--adc); border: 1px solid rgba(244,114,182,.3); background: rgba(244,114,182,.08); }
+.role-stat-pill.sup { color: var(--sup); border: 1px solid rgba(91,156,246,.3);  background: rgba(91,156,246,.08); }
+
+.role-stat-count { font-family: var(--f-head); font-size: 32px; line-height: 1; color: var(--text); }
+.role-stat-lbl   { font-size: 11px; color: var(--text3); letter-spacing: 1px; margin-top: 3px; }
+
+
+/*
+   LIST TOOLBAR
+*/
+.list-toolbar {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-bottom: 2px solid var(--gold); border-radius: var(--rl);
+  padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 8px; flex-wrap: wrap;
+}
+
+.tb-left  { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tb-right { display: flex; align-items: center; gap: 8px; }
+
+.search-input {
+  font-family: var(--f-body); font-size: 13px;
+  background: var(--bg3); border: 1px solid var(--line);
+  color: var(--text); padding: 8px 14px; border-radius: var(--r);
+  outline: none; width: 210px; transition: border-color .15s;
+}
+.search-input:focus        { border-color: rgba(149,236,93,.4); }
+.search-input::placeholder { color: var(--text3); }
+
+.filter-count {
+  font-family: var(--f-body); font-size: 12px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3); white-space: nowrap;
+}
+
+
+/*
+   PROSPECT LIST HEADER ROW
+*/
+.prospect-list-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 180px 160px 80px 100px 100px;
+  align-items: center;
+  padding: 6px 20px;
+  gap: 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3);
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--r); margin-bottom: 4px;
+}
+
+.plh-rank     { text-align: center; }
+.plh-axes     { text-align: center; }
+.plh-score    { text-align: right; }
+.plh-conf     { text-align: center; }
+.plh-decision { text-align: center; }
+.plh-actions  { }
+
+
+/*
+   PROSPECT LIST
+*/
+.prospect-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.prospect-list-item {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 13px 20px;
+  display: grid;
+  grid-template-columns: 40px 1fr 180px 160px 80px 100px 100px;
+  align-items: center; gap: 16px;
+  cursor: pointer; transition: background .1s, border-color .1s;
+}
+.prospect-list-item:hover { background: var(--bg3); border-color: rgba(255,255,255,.12); }
+
+
+/*
+   RANK
+*/
+.pli-rank { font-family: var(--f-head); font-size: 18px; text-align: center; flex-shrink: 0; }
+.trank.gold   { color: var(--gold); }
+.trank.silver { color: #b0bec5; }
+.trank.bronze { color: #cd8b5a; }
+.trank.dim    { color: var(--text3); }
+
+
+/*
+   PLAYER INFO
+*/
+.pli-player {
+  display: flex; align-items: center; gap: 10px;
+  min-width: 0; overflow: hidden;
+}
+
+.player-name {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.player-tag { font-size: 12px; color: var(--text3); flex-shrink: 0; white-space: nowrap; }
+
+
+/*
+   AXIS VALUES
+*/
+.pli-axes {
+  display: flex; align-items: center; gap: 6px;
+  justify-content: center;
+}
+
+.pli-axis-group {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--bg3); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 4px 8px; min-width: 48px;
+}
+
+.pli-axis-lbl {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3);
+}
+
+.pli-axis-val {
+  font-family: var(--f-mono); font-size: 13px; font-weight: 700;
+}
+
+
+/*
+   SCORE — adjusted + raw delta
+*/
+.pli-score { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+
+.pli-score-adj {
+  font-family: var(--f-mono); font-size: 18px; font-weight: 700;
+}
+
+.pli-score-raw {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .5px;
+}
+
+/* score color classes */
+.score-pass { color: var(--pass); }
+.score-flag { color: var(--flag); }
+.score-no   { color: var(--no); }
+
+
+/*
+   CONFIDENCE
+*/
+.pli-conf {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+
+.pli-conf-pct {
+  font-family: var(--f-mono); font-size: 14px; font-weight: 700;
+}
+
+.pli-conf-games {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+}
+
+
+/*
+   DECISION
+*/
+.pli-decision { display: flex; justify-content: center; }
+
+
+/*
+   ROW ACTIONS
+*/
+.pli-actions { display: flex; gap: 6px; justify-content: flex-end; }
+
+
+/*
+   GRADE PILL (legacy — kept for other views)
+*/
+.grade-pill {
+  font-family: var(--f-head); font-size: 16px; color: var(--text3);
+}
